@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manga Recipe Hub</title>
+  <link href="https://fonts.cdnfonts.com/css/anime-ace" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/manga-temple" rel="stylesheet">
+  <link rel="stylesheet" href="recipe.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo-container">
+        <span class="nav-icon">🍙</span>
+        <h2 class="nav-logo">Manga Recipe Hub</h2>
+      </div>
+      <div class="nav-user">
+        <span id="userName" class="nav-user-greeting">Welcome, User</span>
+        <button id="logoutButton" class="nav-logout-btn">Logout <span class="logout-icon">⚔️</span></button>
+      </div>
+      <button class="nav-hamburger" id="hamburgerMenu">☰</button>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="container">
+      <h2 class="subtitle">Taste the Manga World! 🍣</h2>
+
+      <img src="image/giphy.gif" alt="GIF Animasi" width="100">
+      <img src="image/ramen-cute-ramen.gif" alt="GIF Animasi" width="100">
+      <img src="image/d43a5eacd1198ab1ceb14c2f4ed0fc1d.gif" alt="GIF Animasi" width="100">
+      <img src="image/sushi-nom.gif" alt="GIF Animasi" width="100">
+      <img src="image/food-hungry.gif" alt="GIF Animasi" width="100">
+      <img src="image/milk-and-mocha.gif" alt="GIF Animasi" width="100">
+      <img src="image/zzz.gif" alt="GIF Animasi" width="100">
+      <img src="image/eat.gif" alt="GIF Animasi" width="100">
+      <img src="image/bubu-bubu-dudu.gif" alt="GIF Animasi" width="100">
+      <img src="image/cat-chips.gif" alt="GIF Animasi" width="100">
+      <img src="image/3-cats-pop-cat.gif" alt="GIF Animasi" width="100">
+      <div class="filters-section">
+        <div class="search-container">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search recipes, cuisines, or ingredients..."
+          />
+        </div>
+        <div class="filter-container">
+          <label for="cuisineFilter">Filter by Cuisine:</label>
+          <select id="cuisineFilter" class="filter-select">
+            <option value="">All Cuisines</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="loading-state" id="loadingState">
+        <div class="spinner-large"></div>
+        <p>Loading recipes...</p>
+      </div>
+
+      <div class="error-state" id="errorState" style="display: none">
+        <p class="error-text">Failed to load recipes</p>
+        <button id="retryButton" class="retry-button">Retry</button>
+      </div>
+
+      <div class="recipes-grid" id="recipesGrid"></div>
+
+      <div class="show-more-container" id="showMoreContainer">
+        <button id="showMoreButton">Show More</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="recipeModal" style="display: none">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="recipes.js"></script>
+</body>
+</html>
