@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selamat Datang - Manga Style</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --manga-black: #1C2526;
+      --manga-red: #FF2E2E;
+      --paper-white: #F5F5F5;
+      --highlight-yellow: #FFD700;
+      --border-dark: #1C2526;
+    }
+
+    body {
+      font-family: "Anime Ace", "Komika", sans-serif;
+      background: var(--paper-white);
+      min-height: 100vh;
+      color: var(--manga-black);
+      position: relative;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(28, 37, 38, 0.03) 2px,
+        rgba(28, 37, 38, 0.03) 4px
+      );
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-container {
+      text-align: center;
+      padding: 40px;
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+
+    .hero-card {
+      background: var(--paper-white);
+      border: 4px solid var(--border-dark);
+      border-radius: 15px;
+      padding: 60px 40px;
+      box-shadow: 8px 8px 0 var(--border-dark);
+      position: relative;
+      overflow: visible;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 46, 46, 0.3), transparent);
+      transition: left 0.7s;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-card:hover::before {
+      left: 100%;
+    }
+
+    .logo {
+      font-size: 72px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      color: var(--manga-red);
+      font-size: 64px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-shadow: 3px 3px 0 var(--manga-black), -3px -3px 0 var(--manga-black);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+      animation: pulse 3s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .tagline {
+      font-size: 24px;
+      color: var(--manga-black);
+      font-style: italic;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 0 var(--manga-red);
+      position: relative;
+      z-index: 2;
+    }
+
+    .description {
+      font-size: 18px;
+      color: var(--manga-black);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 20px 50px;
+      background: var(--manga-red);
+      color: var(--paper-white);
+      border: 4px solid var(--border-dark);
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 5px 5px 0 var(--border-dark);
+      text-decoration: none;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: "POW!";
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      color: var(--highlight-yellow);
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 0 var(--manga-black);
+      transform: translateY(-50%);
+      transition: left 0.3s;
+    }
+
+    .cta-button:hover {
+      background: var(--highlight-yellow);
+      color: var(--manga-black);
+      transform: translateY(-5px);
+      box-shadow: 8px 8px 0 var(--border-dark);
+    }
+
+    .cta-button:hover::before {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .cta-button:active {
+      transform: translateY(-2px);
+      box-shadow: 5px 5px 0 var(--border-dark);
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature {
+      background: var(--paper-white);
+      border: 3px solid var(--border-dark);
+      border-radius: 10px;
+      padding: 20px;
+      width: 200px;
+      box-shadow: 4px 4px 0 var(--border-dark);
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 6px 6px 0 var(--border-dark);
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .feature-title {
+      color: var(--manga-red);
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 0 var(--manga-black);
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      font-size: 20px;
+      color: var(--highlight-yellow);
+      text-shadow: 1px 1px 0 var(--manga-black);
+      animation: twinkle 6s infinite linear;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .shooting-star {
+      position: absolute;
+      font-size: 40px;
+      color: var(--highlight-yellow);
+      text-shadow: 1px 1px 0 var(--manga-black);
+      animation: shoot 3s infinite ease-in;
+    }
+
+    .shooting-star:nth-child(1) {
+      top: 20%;
+      left: -100px;
+      animation-delay: 0s;
+    }
+
+    .shooting-star:nth-child(2) {
+      top: 50%;
+      left: -100px;
+      animation-delay: 1.5s;
+    }
+
+    .shooting-star:nth-child(3) {
+      top: 80%;
+      left: -100px;
+      animation-delay: 3s;
+    }
+
+    @keyframes shoot {
+      0% {
+        transform: translateX(0) translateY(0) rotate(25deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(120vw) translateY(30vh) rotate(25deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 48px; }
+      .tagline { font-size: 18px; }
+      .description { font-size: 16px; }
+      .hero-card { padding: 40px 20px; }
+      .cta-button { 
+        padding: 16px 40px; 
+        font-size: 18px; 
+      }
+      .features { gap: 20px; }
+      .feature { width: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  
+  <div class="hero-container">
+    <div class="hero-card">
+      <div class="logo">🍜</div>
+      <h1>SELAMAT DATANG!</h1>
+      <p class="tagline">Bergabunglah dengan Petualangan Manga!</p>
+      <p class="description">
+        Masuki dunia yang penuh dengan aksi, drama, dan keseruan! 
+        Siapkan dirimu untuk pengalaman yang tak terlupakan dengan gaya manga yang keren!
+      </p>
+      <a href="index.html" class="cta-button">Mulai Sekarang! ⚡</a>
+      
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">⭐</div>
+          <div class="feature-title">Keren</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <div class="feature-title">Stylish</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔥</div>
+          <div class="feature-title">Seru</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shooting-star">💫</div>
+  <div class="shooting-star">✨</div>
+  <div class="shooting-star">⭐</div>
+
+  <script>
+    // Generate random stars
+    const starsContainer = document.getElementById('stars');
+    const starCount = 30;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.textContent = '✨';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 6 + 's';
+      star.style.fontSize = (Math.random() * 15 + 10) + 'px';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
